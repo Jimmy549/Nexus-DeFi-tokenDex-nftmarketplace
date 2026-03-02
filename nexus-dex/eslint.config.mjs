@@ -15,8 +15,8 @@ const eslintConfig = [
   {
     rules: {
       'react/no-unescaped-entities': 'off',
-      'jsx-a11y/alt-text': 'off',
-      '@next/next/no-img-element': 'off',
+      'jsx-a11y/alt-text': 'warn',
+      '@next/next/no-img-element': 'warn',
     },
   },
 ];

@@ -101,7 +101,8 @@ function TokenBalances() {
           [...Array(4)].map((_, i) => <ListRowSkeleton key={i} />)
         ) : (
           SUPPORTED_TOKENS.map(token => {
-            const bal = balances[token.symbol as keyof typeof balances] ?? 0n;
+            const balValue = balances[token.symbol as keyof typeof balances];
+            const bal = typeof balValue === 'bigint' ? balValue : 0n;
             return (
               <div key={token.symbol} className="flex items-center justify-between p-4 rounded-xl bg-black/20 border border-white/5">
                 <div className="flex items-center gap-3">
@@ -114,7 +115,7 @@ function TokenBalances() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-mono text-base font-700 text-white">{formatTokenAmount(bal as bigint, 18, 4)}</div>
+                  <div className="font-mono text-base font-700 text-white">{formatTokenAmount(bal, 18, 4)}</div>
                   <div className="font-mono text-[10px] text-white/20">{token.symbol}</div>
                 </div>
               </div>
