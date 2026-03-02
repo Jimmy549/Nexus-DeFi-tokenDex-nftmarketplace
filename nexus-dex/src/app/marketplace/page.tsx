@@ -182,9 +182,9 @@ export default function MarketplacePage() {
               <ShoppingBag className="w-10 h-10" style={{ color: 'rgba(0,255,157,0.4)' }} />
             </div>
             <p className="font-mono text-sm" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              {searchQuery ? 'No listings match your search.' : filter === 'mint' ? 'No protocol mints available. Create a new one?' : 'No active listings yet.'}
+              {searchQuery ? 'No listings match your search.' : 'No active listings yet.'}
             </p>
-            {filter === 'mint' && isConnected && (
+            {filter === 'resale' && isConnected && (
               <button 
                 onClick={() => handleFastMint()} 
                 disabled={isMinting}
