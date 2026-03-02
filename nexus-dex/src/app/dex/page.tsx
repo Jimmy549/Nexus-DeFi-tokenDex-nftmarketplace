@@ -102,7 +102,8 @@ function SwapPanel() {
     ? calcPriceImpact(amountInWei, direction === 'AtoB' ? pool.reserves[0] : pool.reserves[1], direction === 'AtoB' ? pool.reserves[1] : pool.reserves[0])
     : 0;
 
-  const bal = balances[tokenIn.symbol as keyof typeof balances] as bigint ?? 0n;
+  const balValue = balances[tokenIn.symbol as keyof typeof balances];
+  const bal = typeof balValue === 'bigint' ? balValue : 0n;
   const noLiquidity = !noPool && (pool.reserves[0] === 0n || pool.reserves[1] === 0n);
 
   const flip = () => { setTokenIn(tokenOut); setTokenOut(tokenIn); setAmountIn(''); setStep('idle'); };
@@ -284,8 +285,10 @@ function AddPanel() {
     else if (txType === 'add') { setAmtA(''); setAmtB(''); setStep('idle'); }
   }, [txType]);
 
-  const balA = balances[tokenA.symbol as keyof typeof balances] ?? 0n;
-  const balB = balances[tokenB.symbol as keyof typeof balances] ?? 0n;
+  const balAValue = balances[tokenA.symbol as keyof typeof balances];
+  const balA = typeof balAValue === 'bigint' ? balAValue : 0n;
+  const balBValue = balances[tokenB.symbol as keyof typeof balances];
+  const balB = typeof balBValue === 'bigint' ? balBValue : 0n;
 
   return (
     <motion.div className="glass-cyan rounded-2xl p-6" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
