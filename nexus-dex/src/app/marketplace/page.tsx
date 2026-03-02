@@ -279,7 +279,7 @@ function ListNFTModal({ onClose, onListed }: { onClose: () => void, onListed: ()
 
         {tokenIds.length === 0 ? (
           <p className="font-mono text-sm text-center py-6" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            You don't own any Nexus Genesis NFTs yet.
+            You don&apos;t own any Nexus Genesis NFTs yet.
           </p>
         ) : (
           <>
